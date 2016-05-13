@@ -53,6 +53,11 @@ pushApp.factory('authService', ['$http', '$q', 'ngAuthSettings', function ($http
         return _httpPost(serviceBase, parameters);
     }
 
+    var _getRegisterByName = function (parameters)
+    {
+        return _httpGet(serviceBase, parameters);
+    }
+
     var _httpGet = function (serviceBase, parameters) {
         var deferred = $q.defer();
 
@@ -110,6 +115,7 @@ pushApp.factory('authService', ['$http', '$q', 'ngAuthSettings', function ($http
      authServiceFactory.httpPost = _httpPost;
      authServiceFactory.httpPut = _httpPut;
      authServiceFactory.register = _register;
+     authServiceFactory.getRegisterByName = _getRegisterByName
 
     return authServiceFactory;
 }]);

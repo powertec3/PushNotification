@@ -15,17 +15,27 @@
             //alert("Notification not enabled");
         }
        
-               $scope.registerData.RegisterId = registerId;
-                authService.register($scope.registerData).then(function (response) {
-                alert("Registered Successfully");
 
-            },
+            $scope.registerData.RegisterId = registerId;
+            authService.getRegisterByName($scope.registerData).then(function (response) {
+           
+
+                $scope.registerData.RegisterId = registerId;
+                authService.register($scope.registerData).then(function (response) {
+                    alert("Registered Successfully " + response.Id);
+                    window.localStorage.setItem('UserID', response.Id);
+
+                },
             function (err) {
-               $scope.message = "error";
-               alert($scope.message);
+                $scope.message = "error";
+                alert($scope.message);
             });
             
-       
+            },
+            function (err) {
+                $scope.message = "error";
+                alert($scope.message);
+            });
        
     }
 

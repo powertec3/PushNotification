@@ -27,112 +27,33 @@
             * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-      
+        
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+       -->
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>AMES Snap</title>
-       
-
-        <link href="css/index.css" rel="stylesheet" />
-        <link href="css/bootstrap.min.css" rel="stylesheet" />
-        <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
-        <link href="css/bootstrap-misc.css" rel="stylesheet" />
-        <link href="css/bootmetro.css" rel="stylesheet" />
-        <link href="css/google-code-prettify/prettify.css" rel="stylesheet" />
-        <title>AMES Snap</title>
+        <title>Hello World</title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
         <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/vendor/angular.js"></script>
         <script type="text/javascript" src="js/vendor/angular-route.js"></script>
-       
-        <script src="js/vendor/google-code-prettify/prettify.js"></script>    
-        <script type="text/javascript" charset="utf-8">
 
-            var savedTime;
-            var localStorage = window.localStorage;
-
-            function onLoad() {
-                //alert('onload');
-                //var savedTime;
-                //var localStorage = window.localStorage;
-                document.addEventListener("deviceready", onDeviceReady, false);
-                //alert('onload complete');
-        }
-
-        function onDeviceReady() {
-            alert ('ready');
-            document.addEventListener("pause", onPause, false);
-            document.addEventListener("resume", onResume, false);
-            //cordova.plugins.notification.badge.set(10);
-        }
-
-        //function onPause() {
-        //    alert('pause');
-        //    //navigator.notification.beep(1);
-        //    cordova.plugins.notification.badge.set(10);
-        //}
-        function onResume() {
-            setTimeout(function () {
-               // alert("onResume");
-                alert("Resume:" + window.localStorage.getItem('name'));
-                // navigator.notification.beep(1);
-                //cordova.plugins.notification.badge.set(10);
-            }, 0);
-        }
-
-        function onPause() {
-            setTimeout(function () {
-                //alert("onPause");
-                //navigator.notification.beep(1);
-                cordova.plugins.notification.badge.hasPermission(function (granted) {
-                    if (granted) {
-                        window.localStorage.setItem('name', 'granted');
-                        cordova.plugins.notification.badge.set(10);
-                    }
-                    else
-                        window.localStorage.setItem('name', 'not granted');
-                });
-                   
-                    //window.localStorage.setItem('name', 'kumar');
-            }, 0);
-        };
-
-    </script>
-
-        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="PushNotification.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
     </head>
-<body onload="onLoad()">
-    <div ng-app="cameraApp" ng-csp>
-       
-        <!--
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-        </div>
-            -->
+<body>
+
+    <div ng-app="pushApp" ng-csp>
         <center><div ng-view></div></center>
     </div>
-    
-    <!--<script type="text/javascript" src="js/index.js"></script>-->
     <script type="text/javascript" src="app/app.js"></script>
-    <script src="app/controllers/cameraController.js"></script>
-    <script src="app/controllers/clientController.js"></script>
-    <script src="app/controllers/mainController.js"></script>
-    <script src="app/controllers/browseImagesController.js"></script>
-    <script src="app/controllers/sessionController.js"></script>
-    <script src="app/controllers/loginController.js"></script>
     <script src="app/controllers/registerController.js"></script>
     <script src="app/services/authService.js"></script>
-    <script src="app/scripts/sessionGrid.js"></script>
-    <script src="app/scripts/imageGrid.js"></script>
-    <!--<script type="text/javascript">
-        app.initialize();
-    </script>-->
+
 
 </body>
-
 </html>
